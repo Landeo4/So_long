@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/08 14:18:27 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:29:26 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 int	main(int argc, char *argv[], char *env[])
 {
 	char	**map;
-	t_game	*ptr;
+	//t_game	*ptr;
 	(void)argc;
 
 	map = map_manager(argv, env);
+	if (!map)
+		return (1);
 	if (verif_map_manager(map) != 1)
 	{
 		free_db_tab(map);
 		return (0);
 	}
-	/*if (verif_size_img(map, ptr) == -1)
+	/*ptr = malloc(sizeof(t_game));
+	ptr = init_struct(ptr);
+	if (verif_size_img(map, ptr) == -1)
 	{
-		verifier la size des images
+		//verifier la size des images
 		free_db_tab(map);
 		ft_printf("wrong tile size\n");
 		return (0);
-	}*/
-	ptr = malloc(sizeof(t_game));
-	ptr = init_struct(ptr);
+	}
 	struct_map(map, ptr);
 	show_db_tab(ptr->map);
 	if (game_manager(map, ptr) == -1)
@@ -40,10 +42,10 @@ int	main(int argc, char *argv[], char *env[])
 		free_db_tab(map);
 		return (-1);
 	}
-	free_db_tab(map);
 	ft_printf("ptr %d ptr %d\n", ptr->p_y, ptr->p_x);
 	game_start(ptr);
-	free_struct(ptr);
+	free_struct(ptr);*/
+	free_db_tab(map);
 	return (0);
 	/*if (!buff)
 	{

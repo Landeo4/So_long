@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/08 14:56:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:48:06 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	**get_map(char *tmp);
 */
 int		verif_map_manager(char **map);
 int		map_out_help(char **map);
-int		verif_map_middle(char **map, int i, int tk_f, int tk_l);
+int		verif_map_middle(char **map);
 int		verif_square(char **map);
 int		verif_playable(char **map);
 

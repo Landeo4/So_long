@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:10:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/08 12:42:45 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:35:53 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,21 @@ char	**map_manager(char *argv[], char *env[])
 	char	*tmp;
 	char	**map;
 
+	// if (is_absolute_pass(argv) == 1)
+	// {
+	// 	map = absolute_pass(argv);
+	// 	return (map)
+	// }
 	tmp = ft_get_path(env);
 	if (!tmp)
 		return (NULL);
 	tmp = get_final_path_map(argv, tmp);
+	if (!tmp)
+		return (NULL);
 	tmp = get_perfect_pass(tmp);
+	if (!tmp)
+		return (NULL);
 	map = get_map(tmp);
-	
 	free(tmp);
 	return (map);
 }
