@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:07:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/08 14:18:29 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:56:40 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@
 	return (0);
 }*/
 
-int	get_keycode(int keycode, t_game *ptr)
+int	get_key_hook(int keycode, t_game *ptr)
 {
+	show_db_tab(ptr->map);
+	ft_printf("la putain de ta mere\n");
 	ptr->p_mov = 0;
 	if (keycode == 119)
 		ptr->p_mov = 1;
@@ -110,11 +112,13 @@ void	close_windows_esc(t_game *ptr)
 	int	j;
 
 	i = 0;
+	ft_printf("close window\n");
 	while (ptr->map[i])
 	{
 		j = 0;
 		while (ptr->map[i][j])
 		{
+			ft_printf("%c\n", ptr->map[i][j]);
 			mlx_destroy_window(ptr->mlx, ptr->win);
 			j++;
 		}

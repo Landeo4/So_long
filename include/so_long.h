@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/08 13:19:06 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:56:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void	player_movement(t_game *ptr);
 void	free_all(t_game *ptr);
 void	close_windows_esc(t_game *ptr);
 int		close_windows_mouse(int keycode, t_game *ptr);
-int		get_keycode(int keycode, t_game *ptr);
 int		try_moove(t_game *ptr);
 void	free_struct(t_game *ptr);
 void	struct_map(char **map, t_game *ptr);
+int		get_key_hook(int keycode, t_game *ptr);
+
 /*
 =====================================
 			PARSING
