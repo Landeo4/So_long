@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:10:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/07 18:14:56 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:42:45 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	**map_manager(char *argv[], char *env[])
 	tmp = get_final_path_map(argv, tmp);
 	tmp = get_perfect_pass(tmp);
 	map = get_map(tmp);
+	
 	free(tmp);
 	return (map);
 }

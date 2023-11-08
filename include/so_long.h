@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/07 17:22:52 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:19:06 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_game
 	int		p_mov;
 	void	*mlx;
 	void	*win;
+	char	**map;
 	char	*img_0;
 	char	*img_1;
 	char	*img_2;
@@ -56,7 +57,7 @@ int		ft_strlen(char *s);
 int		main(int argc, char *argv[], char *env[]);
 int		pr_error(char *error);
 int		game_manager(char **map, t_game *ptr);
-t_game	*player_pos(char **map, t_game *ptr);
+void	player_pos(char **map, t_game *ptr);
 int		nb_item(char **map);
 char	**cpy_map(char **map);
 t_game	*init_struct(t_game *ptr);
@@ -68,17 +69,17 @@ int		backtracking_map(char **tmp, int y, int x);
 char	**map_fill(char **tmp, int y, int x, t_game *ptr);
 int		backtracking_map_finish(char **tmp);
 char	**cpy_map_outline(char **tmp);
-int		game_start(char **map, t_game *ptr);
-int		create_map(char **map, t_game *ptr);
-int		put_image(char **map, t_game *ptr, int *i, int *j);
-void	player_movement(char **map, t_game *ptr);
+int		game_start(t_game *ptr);
+int		create_map(t_game *ptr);
+int		put_image(t_game *ptr, int *i, int *j);
+void	player_movement(t_game *ptr);
 void	free_all(t_game *ptr);
-void	close_windows_esc(t_game *vars, char **map);
-int		close_windows_mouse(int keycode, t_game *vars, char **map);
-int		get_keycode(int keycode, t_game *vars, char **map);
-int		try_moove(char **map, t_game *ptr);
+void	close_windows_esc(t_game *ptr);
+int		close_windows_mouse(int keycode, t_game *ptr);
+int		get_keycode(int keycode, t_game *ptr);
+int		try_moove(t_game *ptr);
 void	free_struct(t_game *ptr);
-
+void	struct_map(char **map, t_game *ptr);
 /*
 =====================================
 			PARSING

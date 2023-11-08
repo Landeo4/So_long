@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:18:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/07 18:18:51 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:23:56 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	game_manager(char **map, t_game *ptr)
 	char	**tmp;
 
 	ptr->nb_item = nb_item(map);
-	ptr = player_pos(map, ptr);
+	player_pos(map, ptr);
 	if (ptr->p_x == -1)
 		return (-1);
 	tmp = cpy_map(map);
@@ -81,7 +81,7 @@ int	nb_item(char **map)
 	return (item);
 }
 
-t_game	*player_pos(char **map, t_game *ptr)
+void	player_pos(char **map, t_game *ptr)
 {
 	int		i;
 	int		j;
@@ -96,14 +96,13 @@ t_game	*player_pos(char **map, t_game *ptr)
 			{
 				ptr->p_x = j;
 				ptr->p_y = i;
-				return (ptr);
+				return ;
 			}
 			j++;
 		}
 		i++;
 	}
 	ptr->p_x = -1;
-	return (ptr);
 }
 
 char	**cpy_map(char **map)
