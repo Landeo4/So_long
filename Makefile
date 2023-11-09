@@ -6,7 +6,7 @@
 #    By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 10:25:01 by tpotilli@st       #+#    #+#              #
-#    Updated: 2023/11/09 11:23:10 by tpotilli         ###   ########.fr        #
+#    Updated: 2023/11/09 16:28:56 by tpotilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS =	srcs/main.c\
 		srcs/game_start.c\
 		srcs/hook_destroy_images.c\
 		srcs/player_movement.c\
+		srcs/struct.c\
 		utils/gnl_utils.c\
 		utils/gnl.c\
 		utils/ft_putchar.c\
@@ -39,7 +40,6 @@ SRCS =	srcs/main.c\
 		utils/ft_strdup.c\
 		utils/ft_len_db_tab.c\
 		parsing/verif_map.c\
-		parsing/parsing.c\
 		parsing/map_manager.c\
 		parsing/absolute_pass.c\
 

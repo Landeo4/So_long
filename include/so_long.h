@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/09 11:38:07 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:31:21 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@
 typedef struct s_game
 {
 	int		i;
-	int 	cpt;
-	int 	x;
-	int 	y;
+	int		cpt;
+	int		x;
+	int		y;
 	int		nb_item;
 	int		nb_exit;
-	int 	p_x;
-	int 	p_y;
+	int		p_x;
+	int		p_y;
 	int		p_mov;
 	int		mov;
 	void	*mlx;
@@ -55,66 +55,67 @@ typedef struct s_game
 	int		height;
 }		t_game;
 
-int		ft_strlen(char *s);
-int		main(int argc, char *argv[], char *env[]);
-int		pr_error(char *error);
-int		game_manager(char **map, t_game *ptr);
-void	player_pos(char **map, t_game *ptr);
-int		nb_item(char **map);
-char	**cpy_map(char **map);
-t_game	*init_struct(t_game *ptr);
-void	show_db_tab(char **map);
-void	free_db_tab(char **map);
-int		get_len_map(char **map);
-int		game_backtracking(char **tmp, t_game *ptr, int y, int x);
-int		backtracking_map(char **tmp, int y, int x);
-char	**map_fill(char **tmp, int y, int x, t_game *ptr);
-int		backtracking_map_finish(char **tmp);
-char	**cpy_map_outline(char **tmp);
-int		game_start(t_game *ptr, char **m);
-int		create_map(t_game *ptr);
-int		put_image(t_game *ptr, int *i, int *j);
-void	free_all(t_game *ptr);
-void	close_windows_esc(t_game *ptr);
-int		close_windows_mouse(int keycode, t_game *ptr);
-int		try_moove(t_game *ptr);
-void	free_struct(t_game *ptr);
-void	struct_map(char **map, t_game *ptr);
-void	struct_map_2(char **map, t_game *ptr);
-int		get_key_hook(int keycode, t_game *ptr);
-char	**cpy_map(char **map);
-void	player_movement(t_game *ptr, int input);
-void	actualize_map(t_game *ptr);
+int					ft_strlen(char *s);
+int					main(int argc, char *argv[], char *env[]);
+int					pr_error(char *error);
+int					game_manager(char **map, t_game *ptr);
+void				player_pos(char **map, t_game *ptr);
+int					nb_item(char **map);
+char				**cpy_map(char **map);
+t_game				*init_struct(t_game *ptr, char **map);
+void				show_db_tab(char **map);
+void				free_db_tab(char **map);
+int					get_len_map(char **map);
+int					game_backtracking(char **tmp, t_game *ptr, int y, int x);
+int					backtracking_map(char **tmp, int y, int x);
+char				**map_fill(char **tmp, int y, int x, t_game *ptr);
+int					backtracking_map_finish(char **tmp);
+char				**cpy_map_outline(char **tmp);
+int					game_start(t_game *ptr);
+int					create_map(t_game *ptr);
+int					put_image(t_game *ptr, int *i, int *j);
+void				close_windows_esc(t_game *ptr);
+int					close_windows_mouse(int keycode, t_game *ptr);
+int					try_moove(t_game *ptr);
+void				free_struct(t_game *ptr);
+void				struct_map(char **map, t_game *ptr);
+int					get_key_hook(int keycode, t_game *ptr);
+char				**cpy_map(char **map);
+void				player_movement(t_game *ptr, int input);
+void				second_init_struct(t_game *ptr, void *mlx);
+
 /*
 =====================================
 			PARSING
 =====================================
 */
 
-bool	parsing(char *argv[]);
-int		verif_map_outline(char **map);
-int		verif_map(char **argv);
-char	**map_manager(char *argv[], char *evp[]);
-char	*ft_get_path(char **env);
-int		get_lenght(char *tmp, char *argv[]);
-char	*get_final_path_map(char *argv[], char *tmp);
-char	*get_perfect_pass(char *tmp);
-char	**get_map(char *tmp);
-int		verif_pass_ber(char **argv, int i, int j);
-int		verif_relatif_pass(char **argv);
-char	**is_absolute_pass(char **argv);
-char	**get_map_relative_pass();
+bool				parsing(char *argv[]);
+int					verif_map_outline(char **map);
+int					verif_map(char **argv);
+char				**map_manager(char *argv[], char *evp[]);
+char				*ft_get_path(char **env);
+int					get_lenght(char *tmp, char *argv[]);
+char				*get_final_path_map(char *argv[], char *tmp);
+char				*get_perfect_pass(char *tmp);
+char				**get_map(char *tmp);
+int					verif_pass_ber(char **argv, int i, int j);
+int					verif_relatif_pass(char **argv);
+char				**is_absolute_pass(char **argv);
+char				*get_map_relative_pass(char **argv);
+int					nb_exit(char **map);
 
 /*
 =====================================
 			MAP VERIF
 =====================================
 */
-int		verif_map_manager(char **map);
-int		map_out_help(char **map);
-int		verif_map_middle(char **map);
-int		verif_square(char **map);
-int		verif_playable(char **map);
+int					verif_map_manager(char **map);
+int					map_out_help(char **map);
+int					verif_map_middle(char **map);
+int					verif_square(char **map);
+int					verif_playable(char **map);
+int					verif_map_characters(t_game *ptr);
 
 /*
 =====================================
@@ -126,16 +127,16 @@ int		verif_playable(char **map);
 #  define BUFFER_SIZE 42
 # endif
 
-char		*get_next_line(int fd);
-char		*ft_first_backup(char *backup, int fd);
-char		*ft_strchr(char *s, int c);
-char		*ft_strjoin(char *s1, char *s2);
-char		*ft_cpy(char *s1, char *s2, char *str);
-char		*ft_str(char *backup);
-char		*ft_clean(char *backup, int i);
-char		*free_join(char *backup, char *buffer);
-char		*ft_substr(char *s, int start, int len);
-int			ft_find_newline(char *str);
+char				*get_next_line(int fd);
+char				*ft_first_backup(char *backup, int fd);
+char				*ft_strchr(char *s, int c);
+char				*ft_strjoin(char *s1, char *s2);
+char				*ft_cpy(char *s1, char *s2, char *str);
+char				*ft_str(char *backup);
+char				*ft_clean(char *backup, int i);
+char				*free_join(char *backup, char *buffer);
+char				*ft_substr(char *s, int start, int len);
+int					ft_find_newline(char *str);
 
 /*
 =====================================

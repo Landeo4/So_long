@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:01:28 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 09:39:19 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:56:59 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,7 @@ void	player_movement(t_game *ptr, int input)
 	put_image(ptr, &ptr->p_y, &ptr->p_x);
 	ptr->mov++;
 	ft_printf("%d\n", ptr->mov);
-	//actualize_map(ptr);
 }
-
-// void	actualize_map(t_game *ptr)
-// {
-	
-// }
 
 /*
 le joueur peux se deplacer

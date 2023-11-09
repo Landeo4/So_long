@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:18:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 09:50:25 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:31:27 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	game_manager(char **map, t_game *ptr)
 	int		y;
 	char	**tmp;
 
-	ptr->nb_item = nb_item(map);
 	player_pos(map, ptr);
 	if (ptr->p_x == -1)
 		return (-1);
@@ -72,6 +71,29 @@ int	nb_item(char **map)
 		{
 			j++;
 			if (map[i][j] == 'C')
+				item++;
+		}
+		i++;
+		j = 0;
+	}
+	return (item);
+}
+
+int	nb_exit(char **map)
+{
+	int	i;
+	int	j;
+	int	item;
+
+	i = 0;
+	j = 0;
+	item = 0;
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			j++;
+			if (map[i][j] == 'S')
 				item++;
 		}
 		i++;

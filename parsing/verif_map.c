@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 11:22:14 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:32:38 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,54 +40,50 @@ char	**get_map(char *tmp)
 	return (map);
 }
 
-/*int verif_size_img(char **map, t_game *ptr)
-{
-	char	*width
-	char	*height;
-
+// int verif_size_img(char **map, t_game *ptr)
+// {
+// 	width = get_next_line();
+// 	if (!width || !height)
+// 		return (-1);
+// 	height = 
+// 	if (width != 16 || height != 16)
+// 		return (-1);
 	
-	width = get_next_line(tiles/floor.xpm);
-	if (!width || !height)
-		return (-1);
-	height = 
-	if (width != 16 || height != 16)
-		return (-1);
-	
-	//verif toutes les tailles = 16 pixels
-	return (0);
-}*/
+// 	//verif toutes les tailles = 32 pixels
+// 	return (0);
+// }
 
 int	verif_map_manager(char **map)
 {
-	if (verif_square(map) == -1)
-		return (-1);
+// 	if (verif_square(map) == -1)
+// 		return (-1);
 	if (verif_map_outline(map) == -1)
 		return (-1);
 	return (1);
 }
 
-int	verif_square(char **map)
-{
-	int	i;
-	int	tk;
-	int	jt;
+// int	verif_square(char **map)
+// {
+// 	int	i;
+// 	int	tk;
+// 	int	jt;
 
-	i = 0;
-	tk = 0;
-	jt = 0;
-	while (map[i] && map[i + 1])
-	{
-		tk = ft_strlen(map[i]);
-		jt = ft_strlen(map[i + 1]);
-		if (tk != jt)
-		{
-			ft_printf("Error\nmap_is_not_a_square\n");
-			return (-1);
-		}
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	tk = 0;
+// 	jt = 0;
+// 	while (map[i] && map[i + 1])
+// 	{
+// 		tk = ft_strlen(map[i]);
+// 		jt = ft_strlen(map[i + 1]);
+// 		if (tk != jt)
+// 		{
+// 			ft_printf("Error\nmap_is_not_a_square\n");
+// 			return (-1);
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	verif_map_outline(char **map)
 {

@@ -6,15 +6,14 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 09:39:13 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:26:02 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	game_start(t_game *ptr, char **map)
+int	game_start(t_game *ptr)
 {
-	(void)map;
 	ptr->mlx = mlx_init();
 	if (!ptr->mlx)
 		return (-1);
@@ -25,7 +24,7 @@ int	game_start(t_game *ptr, char **map)
 	return (0);
 }
 
-int create_map(t_game *ptr)
+int	create_map(t_game *ptr)
 {
 	int		i;
 	int		j;
@@ -35,9 +34,8 @@ int create_map(t_game *ptr)
 	i = 0;
 	height = ft_len_db_tab(ptr->map);
 	width = ft_strlen(ptr->map[i]);
-	ptr->win = mlx_new_window(ptr->mlx, ((width) * 16),
-	((height) * 16), "Hello world!");
-	// ptr->win = mlx_new_window(ptr->mlx, 500, 500, "Hello world!");
+	ptr->win = mlx_new_window(ptr->mlx, ((width) * 32),
+		((height) * 32), "Hello world!");
 	if (ptr->win == NULL)
 		return (-1);
 	while (ptr->map[i])
@@ -58,19 +56,19 @@ int	put_image(t_game *ptr, int *i, int *j)
 {
 	if (ptr->map[*i] && ptr->map[*i][*j] == '1')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_0,
-		(*j) * 16, (*i) * 16);
+			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == '0')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_1,
-		(*j) * 16, (*i) * 16);
+			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'P')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_2,
-		(*j) * 16, (*i) * 16);
+			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'E')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_3,
-		(*j) * 16, (*i) * 16);
+			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'C')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_4,
-		(*j) * 16, (*i) * 16);
+			(*j) * 32, (*i) * 32);
 	return (0);
 }
 

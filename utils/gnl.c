@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:43:49 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/10/25 13:27:57 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:54:17 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char	*ft_first_backup(char *backup, int fd)
 	help = 1;
 	while (!ft_strchr(backup, '\n') && help != 0)
 	{
-		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		help = read(fd, buffer, BUFFER_SIZE);
+		buffer = malloc(sizeof(char) * (5 + 1));
+		help = read(fd, buffer, 5);
 		if (help == -1)
 		{
 			free(buffer);
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 	static char	*backup[1024];
 	char		*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0)
 		return (NULL);
 	backup[fd] = ft_first_backup(backup[fd], fd);
 	if (!backup[fd])
