@@ -6,22 +6,31 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/09 11:11:20 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:45:51 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_absolute_pass(char **argv)
+char **is_absolute_pass(char **argv)
 {
-    int		i;
+	char	**map;
+
+	map = NULL;
+	if (verif_relatif_pass(argv) == -1)
+		return (NULL);
+	map = get_map_relative_pass(argv);
+	return (map);
+}
+
+int	verif_relatif_pass(char **argv)
+{
+	int		i;
     int		j;
-	int		c;
-    char	*name;
 	int		token;
 
     i = ((j = 0));
-	c = ((token = 0));
+	token = 0;
     while(argv[i])
         i++;
     i--;
@@ -33,12 +42,12 @@ int	is_absolute_pass(char **argv)
     }
 	if (token == 0)
 		return (-1);
-    else if (verif_pass_ber(argv, i, j, c) == -1)
+    else if (verif_pass_ber(argv, i, j) == -1)
 		return (-1);
     return (1);
 }
 
-int	verif_pass_ber(char **argv, int i, int j, int c)
+int	verif_pass_ber(char **argv, int i, int j)
 {
 	char	*name;
 	int		c;
@@ -54,4 +63,17 @@ int	verif_pass_ber(char **argv, int i, int j, int c)
 		c++;
     }
 	return (0);
+}
+
+char **get_map_relative_pass(char **argv)
+{
+	char	*buf;
+	int		fd;
+	int		len;
+
+	if (fd < 0)
+		return (NULL);
+	fd = open(argv[], O_RDONLY);
+	buf = get_next_line();
+	return (buf);
 }

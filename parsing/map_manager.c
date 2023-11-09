@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:10:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 10:30:17 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:21:17 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	**map_manager(char *argv[], char *env[])
 	char	*tmp;
 	char	**map;
 
-	if (is_absolute_pass(argv) == 1)
+	if (is_absolute_pass(argv) == 0)
 	{
-		map = absolute_pass(argv);
-		return (map)
+		map = is_absolute_pass(argv);
+		return (map);
 	}
 	tmp = ft_get_path(env);
 	if (!tmp)

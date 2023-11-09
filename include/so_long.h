@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/09 10:33:39 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:38:07 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int		get_key_hook(int keycode, t_game *ptr);
 char	**cpy_map(char **map);
 void	player_movement(t_game *ptr, int input);
 void	actualize_map(t_game *ptr);
-int		verif_pass_ber(argv, i, j, c);
 /*
 =====================================
 			PARSING
@@ -101,8 +100,10 @@ int		get_lenght(char *tmp, char *argv[]);
 char	*get_final_path_map(char *argv[], char *tmp);
 char	*get_perfect_pass(char *tmp);
 char	**get_map(char *tmp);
-int		is_absolute_pass(char **argv);
-int		verif_pass_ber(char **argv);
+int		verif_pass_ber(char **argv, int i, int j);
+int		verif_relatif_pass(char **argv);
+char	**is_absolute_pass(char **argv);
+char	**get_map_relative_pass();
 
 /*
 =====================================

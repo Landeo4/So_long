@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 07:49:03 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:22:14 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	**get_map(char *tmp)
 	free(buf);
 	return (map);
 }
+
 /*int verif_size_img(char **map, t_game *ptr)
 {
 	char	*width
