@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:18:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/08 12:23:56 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 09:50:25 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	game_manager(char **map, t_game *ptr)
 	if (ptr->p_x == -1)
 		return (-1);
 	tmp = cpy_map(map);
-	show_db_tab(tmp);
 	x = ptr->p_x;
 	y = ptr->p_y;
 	if (game_backtracking(tmp, ptr, y, x) == -1)

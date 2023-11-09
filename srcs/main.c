@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/09 09:42:21 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 09:49:41 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char *argv[], char *env[])
 	ptr = malloc(sizeof(t_game));
 	ptr = init_struct(ptr);
 	struct_map(map, ptr);
-	//show_db_tab(ptr->map);
 	if (game_manager(map, ptr) == -1)
 	{
 		free_db_tab(map);
@@ -50,16 +49,6 @@ int	main(int argc, char *argv[], char *env[])
 	free_struct(ptr);
 	free_db_tab(map);
 	return (0);
-	/*if (!buff)
-	{
-		while (buff[i])
-		{
-			ft_printf("%s", buff[i]);
-			i++;
-		}
-		return (write(1, "ERROR\n", 7), -1);
-	}*/
-	//parsing(argv);
 }
 
 void	free_struct(t_game *ptr)
@@ -103,28 +92,6 @@ t_game	*init_struct(t_game *ptr)
 	ptr->img_3 = mlx_xpm_file_to_image(mlx, "tiles/exit.xpm", &img_width, &img_height);
 	ptr->img_4 = mlx_xpm_file_to_image(mlx, "tiles/item.xpm", &img_width, &img_height);
 	return (ptr);
-}
-
-void struct_map_2(char **map, t_game *ptr)
-{
-	int i;
-	int j;
-
-	i = 0;
-	ptr->cpy = malloc(sizeof(char *) * (ft_len_db_tab(map) + 1));
-	while (map[i])
-	{
-		j = 0;
-		ptr->cpy[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
-		while (map[i][j])
-		{
-			ptr->cpy[i][j] = map[i][j];
-			j++;
-		}
-		ptr->cpy[i][j] = '\0';
-		i++;
-	}
-	ptr->cpy[i] = '\0';
 }
 
 void struct_map(char **map, t_game *ptr)
