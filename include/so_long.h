@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/09 09:38:10 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:31:56 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int		get_lenght(char *tmp, char *argv[]);
 char	*get_final_path_map(char *argv[], char *tmp);
 char	*get_perfect_pass(char *tmp);
 char	**get_map(char *tmp);
+int		is_absolute_pass(char **argv);
+int		verif_pass_ber(char **argv);
 
 /*
 =====================================
