@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/08 16:48:06 by tpotillion       ###   ########.fr       */
+/*   Updated: 2023/11/09 09:38:10 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ typedef struct s_game
 	int 	p_x;
 	int 	p_y;
 	int		p_mov;
+	int		mov;
 	void	*mlx;
 	void	*win;
 	char	**map;
+	char	**cpy;
 	char	*img_0;
 	char	*img_1;
 	char	*img_2;
@@ -69,17 +71,20 @@ int		backtracking_map(char **tmp, int y, int x);
 char	**map_fill(char **tmp, int y, int x, t_game *ptr);
 int		backtracking_map_finish(char **tmp);
 char	**cpy_map_outline(char **tmp);
-int		game_start(t_game *ptr);
+int		game_start(t_game *ptr, char **m);
 int		create_map(t_game *ptr);
 int		put_image(t_game *ptr, int *i, int *j);
-void	player_movement(t_game *ptr);
 void	free_all(t_game *ptr);
 void	close_windows_esc(t_game *ptr);
 int		close_windows_mouse(int keycode, t_game *ptr);
 int		try_moove(t_game *ptr);
 void	free_struct(t_game *ptr);
 void	struct_map(char **map, t_game *ptr);
+void	struct_map_2(char **map, t_game *ptr);
 int		get_key_hook(int keycode, t_game *ptr);
+char	**cpy_map(char **map);
+void	player_movement(t_game *ptr, int input);
+void	actualize_map(t_game *ptr);
 
 /*
 =====================================

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/08 17:32:33 by tpotillion       ###   ########.fr       */
+/*   Updated: 2023/11/09 07:49:03 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
- char	**get_map(char *tmp)
+char	**get_map(char *tmp)
 {
 	char	**map;
 	char	*buf;
@@ -39,7 +39,6 @@
 	free(buf);
 	return (map);
 }
-
 /*int verif_size_img(char **map, t_game *ptr)
 {
 	char	*width
@@ -60,15 +59,9 @@
 int	verif_map_manager(char **map)
 {
 	if (verif_square(map) == -1)
-	{
-		free(map);
-		return (pr_error("map is not a square\n"));
-	}
+		return (-1);
 	if (verif_map_outline(map) == -1)
-	{
-		free(map);
-		return (pr_error("wrong_map_outline\n"));
-	}
+		return (-1);
 	return (1);
 }
 
@@ -86,7 +79,10 @@ int	verif_square(char **map)
 		tk = ft_strlen(map[i]);
 		jt = ft_strlen(map[i + 1]);
 		if (tk != jt)
+		{
+			ft_printf("Error\nmap_is_not_a_square\n");
 			return (-1);
+		}
 		i++;
 	}
 	return (0);
@@ -118,8 +114,8 @@ int	verif_map_middle(char **map)
 		j = 0;
 		while (map[i][j] && map[i][j])
 		{
-			if (map[i][j] != '0' || map[i][j] != 'P' || map[i][j] != 'C'
-				|| map[i][j] != 'E' || map[i][j] != '1')
+			if (map[i][j] != '0' && map[i][j] != 'P' && map[i][j] != 'C'
+				&& map[i][j] != 'E' && map[i][j] != '1')
 				return (-1);
 			j++;
 		}

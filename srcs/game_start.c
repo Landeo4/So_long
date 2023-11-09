@@ -6,23 +6,21 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/08 14:56:17 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/09 09:39:13 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	game_start(t_game *ptr)
+int	game_start(t_game *ptr, char **map)
 {
+	(void)map;
 	ptr->mlx = mlx_init();
 	if (!ptr->mlx)
 		return (-1);
 	create_map(ptr);
-	ft_printf("voici la map dans game_start\n");
-	show_db_tab(ptr->map);
 	// mlx_mouse_hook(ptr->win, close_windows_mouse, &ptr);
-	mlx_hook(ptr->win, 2, 1L << 0, get_key_hook, &ptr);
-	//player_movement(map, ptr);
+	mlx_hook(ptr->win, 2, 1L << 0, get_key_hook, ptr);
 	mlx_loop(ptr->mlx);
 	return (0);
 }
