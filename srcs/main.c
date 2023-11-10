@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/09 17:30:19 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:41:39 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,32 @@
 int	main(int argc, char *argv[], char *env[])
 {
 	char	**map;
-	t_game	*ptr;
+	t_game	ptr;
 	(void)argc;
+
 	map = map_manager(argv, env);
-	if (!map)
-	{
-		free(map);
-		return (1);
-	}
-	ptr = malloc(sizeof(t_game));
-	ptr = init_struct(ptr, map);
-	struct_map(map, ptr);
+	if (map == NULL)
+		return (free(map), -1);
+	ptr.mlx = mlx_init();
+	if (!ptr.mlx)
+		return (-1);
+	init_struct(&ptr, map);
+	if (verif_all(map, &ptr) == -1)
+		return (free_db_tab(map), 0);
+	struct_map(map, &ptr);
+	ptr.nb_item = nb_item(map);
+	game_start(&ptr);
+	free_struct(&ptr);
+	free_db_tab(map);
+	return (0);
+}
+
+int	verif_all(char **map, t_game *ptr)
+{
 	if (ptr->nb_exit != 1)
 	{
 		free_db_tab(map);
+		ft_printf("invalid number of exit\n");
 		return (0);
 	}
 	if (verif_map_manager(map) != 1)
@@ -36,21 +48,17 @@ int	main(int argc, char *argv[], char *env[])
 		free_db_tab(map);
 		return (0);
 	}
+	if (game_manager(map, ptr) == -1)
+	{
+		free_db_tab(map);
+		return (-1);
+	}
 	// if (verif_size_img(map, ptr) == -1)
 	// {
 	// 	free_db_tab(map);
 	// 	ft_printf("wrong tile size\n");
 	// 	return (0);
 	// }
-	if (game_manager(map, ptr) == -1)
-	{
-		free_db_tab(map);
-		return (-1);
-	}
-	ptr->nb_item = nb_item(ptr->map);
-	game_start(ptr);
-	free_struct(ptr);
-	free_db_tab(map);
 	return (0);
 }
 

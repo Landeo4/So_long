@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/09 17:31:21 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:59:37 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # include <stdint.h>
 # include <stdarg.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 /*
 =====================================
 			STRUCTURE
@@ -32,8 +36,6 @@
 
 typedef struct s_game
 {
-	int		i;
-	int		cpt;
 	int		x;
 	int		y;
 	int		nb_item;
@@ -45,14 +47,11 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**map;
-	char	**cpy;
 	char	*img_0;
 	char	*img_1;
 	char	*img_2;
 	char	*img_3;
 	char	*img_4;
-	int		width;
-	int		height;
 }		t_game;
 
 int					ft_strlen(char *s);
@@ -62,7 +61,7 @@ int					game_manager(char **map, t_game *ptr);
 void				player_pos(char **map, t_game *ptr);
 int					nb_item(char **map);
 char				**cpy_map(char **map);
-t_game				*init_struct(t_game *ptr, char **map);
+void				init_struct(t_game *ptr, char **map);
 void				show_db_tab(char **map);
 void				free_db_tab(char **map);
 int					get_len_map(char **map);
@@ -116,6 +115,7 @@ int					verif_map_middle(char **map);
 int					verif_square(char **map);
 int					verif_playable(char **map);
 int					verif_map_characters(t_game *ptr);
+int					verif_all(char **map, t_game *ptr);
 
 /*
 =====================================

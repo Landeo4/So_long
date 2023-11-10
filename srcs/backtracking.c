@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:00:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 09:50:13 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:49:11 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	game_backtracking(char **tmp, t_game *ptr, int y, int x)
 	{
 		if (tmp[y][x] == 'C')
 			ptr->nb_item--;
-		else if (tmp[y][x] == 'S')
+		else if (tmp[y][x] == 'E')
 			ptr->nb_exit--;
 		tmp[y][x] = '2';
 		game_backtracking(tmp, ptr, y, (x + 1));
@@ -37,7 +37,7 @@ char	**map_fill(char **tmp, int y, int x, t_game *ptr)
 {
 	if (tmp[y][x] == 'C')
 		ptr->nb_item--;
-	else if (tmp[y][x] == 'S')
+	else if (tmp[y][x] == 'E')
 		ptr->nb_exit--;
 	tmp[y][x] = '2';
 	return (tmp);

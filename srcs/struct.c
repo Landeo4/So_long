@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:28:04 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 17:29:13 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:46:52 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ void	free_struct(t_game *ptr)
 	free(ptr->map);
 	free(ptr->mlx);
 	free(ptr->win);
+	free(ptr->img_0);
+	free(ptr->img_1);
+	free(ptr->img_2);
+	free(ptr->img_3);
+	free(ptr->img_4);
 	return ;
 }
 
-t_game	*init_struct(t_game *ptr, char **map)
+void	init_struct(t_game *ptr, char **map)
 {
-	void	*mlx;
-
-	mlx = mlx_init();
-	ptr->i = 0;
-	ptr->cpt = 0;
+	second_init_struct(ptr, ptr->mlx);
 	ptr->x = 0;
 	ptr->y = 0;
 	ptr->nb_item = nb_item(map);
@@ -43,10 +44,7 @@ t_game	*init_struct(t_game *ptr, char **map)
 	ptr->p_y = 0;
 	ptr->p_mov = 0;
 	ptr->map = NULL;
-	ptr->cpy = NULL;
 	ptr->mov = 0;
-	second_init_struct(ptr, mlx);
-	return (ptr);
 }
 
 void	second_init_struct(t_game *ptr, void *mlx)
@@ -54,6 +52,8 @@ void	second_init_struct(t_game *ptr, void *mlx)
 	int		img_width;
 	int		img_height;
 
+	img_height = 32;
+	img_width = 32;
 	ptr->img_0 = mlx_xpm_file_to_image(mlx,
 			"tiles/Wall2.xpm", &img_width, &img_height);
 	ptr->img_1 = mlx_xpm_file_to_image(mlx,

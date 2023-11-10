@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 16:26:02 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:23:08 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	game_start(t_game *ptr)
 {
-	ptr->mlx = mlx_init();
-	if (!ptr->mlx)
-		return (-1);
 	create_map(ptr);
 	// mlx_mouse_hook(ptr->win, close_windows_mouse, &ptr);
 	mlx_hook(ptr->win, 2, 1L << 0, get_key_hook, ptr);

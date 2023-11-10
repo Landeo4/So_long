@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/09 16:20:17 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:58:38 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 char	**is_absolute_pass(char **argv)
 {
-	char	*map;
+	char	*buf;
 	char	**split;
+	int		fd;
+	int		len;
 
-	map = NULL;
-	if (verif_relatif_pass(argv) == -1)
+	len = 0;
+	while (argv[len])
+		len++;
+	len--;
+	ft_printf("je passe par la \n");
+	fd = open("./so_long_banger/maps/map.ber", O_RDONLY);
+	ft_printf("%s\n %d\n", argv[len], fd);
+	if (fd < 0)
 		return (NULL);
-	split = NULL;
-	map = get_map_relative_pass(argv);
-	split = ft_split(map, '\n');
+	buf = get_next_line(fd);
+	ft_printf("buf %s\n", buf);
+	split = ft_split(buf, '\n');
 	return (split);
 }
 

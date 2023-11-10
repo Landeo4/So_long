@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:18:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 17:31:27 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:47:54 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	nb_exit(char **map)
 		while (map[i][j])
 		{
 			j++;
-			if (map[i][j] == 'S')
+			if (map[i][j] == 'E')
 				item++;
 		}
 		i++;

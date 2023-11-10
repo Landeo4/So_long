@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 17:32:38 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:41:08 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	**get_map(char *tmp)
 	if (!buf)
 		return (NULL);
 	buf = ft_memset(buf, 0, 500);
+	ft_printf("voici le tmp%s\n", tmp);
 	fd = open(tmp, O_RDONLY);
 	if (fd < 0)
 	{
