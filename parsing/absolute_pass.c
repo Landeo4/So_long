@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/10 15:58:38 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 07:25:04 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,40 @@ char	**is_absolute_pass(char **argv)
 	char	**split;
 	int		fd;
 	int		len;
+	int		i;
 
-	len = 0;
+	len = ((i = 0));
 	while (argv[len])
 		len++;
 	len--;
 	ft_printf("je passe par la \n");
-	fd = open("./so_long_banger/maps/map.ber", O_RDONLY);
+	fd = open("./maps/map.ber", O_RDONLY);
 	ft_printf("%s\n %d\n", argv[len], fd);
 	if (fd < 0)
+	{
+		ft_printf("erreur lors de l'ouverture du fichier\n");
 		return (NULL);
+	}
 	buf = get_next_line(fd);
 	ft_printf("buf %s\n", buf);
 	split = ft_split(buf, '\n');
+	close(fd);
 	return (split);
 }
+
+// int	is_complete_map(char *map)
+// {
+// 	int i;
+
+// 	while (map[i])
+// 	{
+// 		if (map[i] != '0' && map[i] != 'P' && map[i] != 'C'
+// 				&& map[i] != 'E' && map[i] != '1')
+// 				return (-1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	verif_relatif_pass(char **argv)
 {

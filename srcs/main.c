@@ -6,34 +6,74 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/10 15:41:39 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:46:51 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[], char *env[])
+int main(int argc, char **argv, char **env)
 {
-	char	**map;
-	t_game	ptr;
-	(void)argc;
+    (void)argc;
+    (void)argv;
+    (void)env;
+    int fd;
+	char *buf;
+	char *tmp;
+	int i;
+	int j;
 
-	map = map_manager(argv, env);
-	if (map == NULL)
-		return (free(map), -1);
-	ptr.mlx = mlx_init();
-	if (!ptr.mlx)
-		return (-1);
-	init_struct(&ptr, map);
-	if (verif_all(map, &ptr) == -1)
-		return (free_db_tab(map), 0);
-	struct_map(map, &ptr);
-	ptr.nb_item = nb_item(map);
-	game_start(&ptr);
-	free_struct(&ptr);
-	free_db_tab(map);
-	return (0);
+	i = 0;
+	j = 0;
+    fd = open("/mnt/nfs/homes/tpotilli/Desktop/projet a mettre sur git/so_long_banger/so_long_banger/maps/map.ber", O_RDONLY);
+	printf("fd: %d\n", fd);
+	tmp = NULL;
+	buf = NULL;
+	tmp = calloc(200, sizeof(char));
+    while (4)
+	{
+        buf = get_next_line(fd);
+		ft_printf("%s\n", buf);
+		if (buf == NULL)
+			break;
+		while (buf[i])
+		{
+			tmp[j] = buf[i];
+			i++;
+			j++;
+		}
+		i = 0;
+    }
+	tmp[j] = '\0';
+	printf("%s\n", tmp);
+	free(tmp);
+	free(buf);
+    close(fd);
+    return (0);
 }
+
+// int	main(int argc, char *argv[], char *env[])
+// {
+// 	char	**map;
+// 	t_game	ptr;
+// 	(void)argc;
+
+// 	map = map_manager(argv, env);
+// 	if (map == NULL)
+// 		return (free(map), -1);
+// 	ptr.mlx = mlx_init();
+// 	if (!ptr.mlx)
+// 		return (-1);
+// 	init_struct(&ptr, map);
+// 	if (verif_all(map, &ptr) == -1)
+// 		return (free_db_tab(map), 0);
+// 	struct_map(map, &ptr);
+// 	ptr.nb_item = nb_item(map);
+// 	game_start(&ptr);
+// 	free_struct(&ptr);
+// 	free_db_tab(map);
+// 	return (0);
+// }
 
 int	verif_all(char **map, t_game *ptr)
 {

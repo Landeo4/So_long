@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 09:33:54 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/10/27 14:26:25 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 08:43:39 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_letter(char const *s, char c, int i)
 	return (letter + 1);
 }
 
-char	**ft_free(char **split, int index_word)
+char	**ft_free_split(char **split, int index_word)
 {
 	while (index_word > 0)
 	{
@@ -75,7 +75,7 @@ char	**ft_copy(char const *s, char c, char **split, int i)
 	{
 		split[index_word] = malloc(sizeof(char) * ft_letter(s, c, i));
 		if (!split[index_word])
-			ft_free(split, index_word);
+			ft_free_split(split, index_word);
 		while (s[i] != c && s[i])
 		{
 			split[index_word][index_letter] = s[i];

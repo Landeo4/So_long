@@ -6,92 +6,117 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:43:49 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:54 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:39:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_first_backup(char *backup, int fd)
+char	*ft_free(char *buffer, char *buf)
 {
-	int		help;
-	char	*buffer;
+	char	*temp;
 
-	help = 1;
-	while (!ft_strchr(backup, '\n') && help != 0)
-	{
-		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		help = read(fd, buffer, BUFFER_SIZE);
-		if (help == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		buffer[help] = '\0';
-		backup = free_join(backup, buffer);
-		free(buffer);
-	}
-	return (backup);
+	temp = ft_strjoin(buffer, buf);
+	free(buffer);
+	return (temp);
 }
 
-char	*ft_get_str(char *backup)
-{
-	char	*new_line;
-
-	if (!backup)
-		return (NULL);
-	if (ft_find_newline(backup) >= 0)
-		new_line = ft_substr(backup, 0, ((ft_find_newline(backup) + 1)));
-	else
-		new_line = ft_substr(backup, 0, ft_strlen(backup));
-	return (new_line);
-}
-
-int	ft_find_newline(char *str)
-{
-	int	i;
-
-	i = -1;
-	if (!(str))
-		return (-1);
-	while (str[++i])
-	{
-		if (str[i] == '\n')
-			return (i);
-	}
-	return (-1);
-}
-
-char	*ft_next_line(char *backup)
+char	*ft_next(char *buffer)
 {
 	int		i;
-	char	*new;
+	int		j;
+	char	*line;
 
-	i = (ft_strlen(backup) - ft_find_newline(backup));
-	if (!backup || ft_find_newline(backup) == -1)
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
 	{
-		free(backup);
+		free(buffer);
 		return (NULL);
 	}
-	else
-		new = ft_substr(backup, (ft_find_newline(backup) + 1), i);
-	free(backup);
-	return (new);
+	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	if (!line)
+		return (NULL);
+	i++;
+	j = 0;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	free(buffer);
+	return (line);
+}
+
+char	*ft_line(char *buffer)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	if (!buffer[i])
+		return (NULL);
+	line = ft_calloc(ft_strlen(buffer) + 1, sizeof(char));
+	if (!line)
+	{
+		free(line);
+		return (NULL);
+	}
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n';
+	return (line);
+}
+
+char	*read_file(int fd, char *result)
+{
+	char	*buffer;
+	int		byte_read;
+
+	if (!result)
+		result = ft_calloc(1, 1);
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buffer)
+		return (NULL);
+	byte_read = 1;
+	while (byte_read > 0)
+	{
+		byte_read = read(fd, buffer, BUFFER_SIZE);
+		if (byte_read < 0)
+		{
+			free(buffer);
+			free(result);
+			return (NULL);
+		}
+		buffer[byte_read] = '\0';
+		result = ft_free(result, buffer);
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
+	free(buffer);
+	return (result);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*backup[1024];
-	char		*str;
+	static char	*buffer;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE == 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	backup[fd] = ft_first_backup(backup[fd], fd);
-	if (!backup[fd])
+	buffer = read_file(fd, buffer);
+	if (!buffer)
 		return (NULL);
-	str = ft_get_str(backup[fd]);
-	backup[fd] = ft_next_line(backup[fd]);
-	return (str);
+	line = ft_line(buffer);
+	buffer = ft_next(buffer);
+	if (!line)
+		return (free(buffer), NULL);
+	if (ft_strlen(line) == 1 || ft_strlen(line) == 0)
+		free(buffer);
+	return (line);
 }
 
 /* #include "get_next_line.h"

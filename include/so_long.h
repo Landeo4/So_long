@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/10 14:59:37 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:43:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <stdarg.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 /*
@@ -103,6 +103,7 @@ int					verif_relatif_pass(char **argv);
 char				**is_absolute_pass(char **argv);
 char				*get_map_relative_pass(char **argv);
 int					nb_exit(char **map);
+int					is_complete_map(char **buf);
 
 /*
 =====================================
@@ -123,8 +124,8 @@ int					verif_all(char **map, t_game *ptr);
 =====================================
 */
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#	ifndef BUFFER_SIZE
+#	define BUFFER_SIZE 1
 # endif
 
 char				*get_next_line(int fd);
@@ -161,7 +162,7 @@ char				*ft_itoa(int n);
 int					ft_print_hex(unsigned int nbr, const char format);
 int					ft_strlen(char *str);
 int					ft_letter(char const *s, char c, int i);
-char				**ft_free(char **split, int index_word);
+char				*ft_free(char *buffer, char *buf);
 int					ft_word(char const *s, char c);
 char				**ft_copy(char const *s, char c, char **split, int i);
 char				**ft_split(char const *s, char c);
