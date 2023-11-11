@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:01:28 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/09 13:56:59 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:04:58 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	player_movement(t_game *ptr, int input)
 	else if (input == 4)
 		x = x + 1;
 	if (ptr->map[y][x] == 'E' && ptr->nb_item == 0)
+	{
 		close_windows_esc(ptr);
+		return ;
+	}
 	else if (ptr->map[y][x] == 'E')
 		return ;
 	else if (ptr->map[y][x] == 'C')

@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/11 07:25:04 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:22:25 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ char	**is_absolute_pass(char **argv)
 	while (argv[len])
 		len++;
 	len--;
-	ft_printf("je passe par la \n");
-	fd = open("./maps/map.ber", O_RDONLY);
-	ft_printf("%s\n %d\n", argv[len], fd);
+	fd = open("/mnt/nfs/homes/tpotilli/Desktop/projet a mettre sur git/so_long_banger/so_long_banger/maps/map.ber", O_RDONLY);
 	if (fd < 0)
 	{
 		ft_printf("erreur lors de l'ouverture du fichier\n");
 		return (NULL);
 	}
-	buf = get_next_line(fd);
-	ft_printf("buf %s\n", buf);
+	buf = get_map_relative_pass(fd);
+	ft_printf("buf%s\n", buf);
 	split = ft_split(buf, '\n');
+	free(buf);
 	close(fd);
 	return (split);
 }
@@ -95,20 +94,32 @@ int	verif_pass_ber(char **argv, int i, int j)
 	return (0);
 }
 
-char	*get_map_relative_pass(char **argv)
+char	*get_map_relative_pass(int fd)
 {
+	char	*tmp;
 	char	*buf;
-	int		fd;
-	int		len;
+	int		i;
+	int		j;
 
-	len = 0;
-	while (argv[len])
-		len++;
-	len--;
-	fd = open(argv[len], O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	buf = get_next_line(fd);
-	ft_printf("buf %s\n", buf);
-	return (buf);
+	i = 0;
+	j = 0;
+	tmp = calloc(300, sizeof(char));
+    while (4)
+	{
+        buf = get_next_line(fd);
+		if (buf == NULL)
+			break;
+		while (buf[i])
+		{
+			tmp[j] = buf[i];
+			i++;
+			j++;
+		}
+		i = 0;
+		free(buf);
+    }
+	tmp[j] = '\0';
+    close(fd);
+	free(buf);
+    return (tmp);
 }

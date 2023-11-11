@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/11 10:43:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:14:33 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char				**get_map(char *tmp);
 int					verif_pass_ber(char **argv, int i, int j);
 int					verif_relatif_pass(char **argv);
 char				**is_absolute_pass(char **argv);
-char				*get_map_relative_pass(char **argv);
+char				*get_map_relative_pass(int fd);
 int					nb_exit(char **map);
 int					is_complete_map(char **buf);
 
@@ -177,5 +177,6 @@ char				*ft_strlcpy(char *dest, const char *src, int size);
 char				*copy_char(char *s1, char *s2, int i, int j);
 char				*ft_strdup(char *s);
 int					ft_len_db_tab(char **str);
+char				**ft_free_split(char **split, int index_word);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:28:04 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/10 14:46:52 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:04:23 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ void	free_struct(t_game *ptr)
 		free(ptr->map[i]);
 		i++;
 	}
-	free(ptr->map);
-	free(ptr->mlx);
-	free(ptr->win);
-	free(ptr->img_0);
-	free(ptr->img_1);
-	free(ptr->img_2);
-	free(ptr->img_3);
-	free(ptr->img_4);
 	return ;
 }
 
@@ -70,13 +62,16 @@ void	struct_map(char **map, t_game *ptr)
 {
 	int	i;
 	int	j;
+	int	len;
 
 	i = 0;
-	ptr->map = malloc(sizeof(char *) * (ft_len_db_tab(map) + 1));
+	len = ft_strlen(map[i]);
+	len++;
+	ptr->map = malloc(sizeof(char *) * (len + 1));
 	while (map[i])
 	{
 		j = 0;
-		ptr->map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
+		ptr->map[i] = malloc(sizeof(char) * (len + 1));
 		while (map[i][j])
 		{
 			ptr->map[i][j] = map[i][j];
@@ -86,4 +81,5 @@ void	struct_map(char **map, t_game *ptr)
 		i++;
 	}
 	ptr->map[i] = '\0';
+	free_db_tab(map);
 }

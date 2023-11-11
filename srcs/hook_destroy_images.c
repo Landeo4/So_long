@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:07:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/10 14:46:54 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:06:11 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	get_key_hook(int keycode, t_game *ptr)
 {
+	ptr->nb_item = nb_item(ptr->map);
 	ptr->p_mov = 0;
 	if (keycode == 119)
 		ptr->p_mov = 1;
@@ -24,7 +25,10 @@ int	get_key_hook(int keycode, t_game *ptr)
 	else if (keycode == 100)
 		ptr->p_mov = 4;
 	if (keycode == 65307)
+	{
 		close_windows_esc(ptr);
+		exit (0);
+	}
 	if (keycode == 119 || keycode == 97 || keycode == 115
 		|| keycode == 100)
 	{
@@ -63,11 +67,14 @@ void	close_windows_esc(t_game *ptr)
 {
 	mlx_destroy_window(ptr->mlx, ptr->win);
 	mlx_destroy_display(ptr->mlx);
-	free(ptr->img_0);
-	free(ptr->img_1);
-	free(ptr->img_2);
-	free(ptr->img_3);
-	free(ptr->img_4);
+	mlx_destroy_image(ptr->mlx, ptr->img_0);
+	mlx_destroy_image(ptr->mlx, ptr->img_1);
+	mlx_destroy_image(ptr->mlx, ptr->img_2);
+	mlx_destroy_image(ptr->mlx, ptr->img_3);
+	mlx_destroy_image(ptr->mlx, ptr->img_4);
+	free(ptr->map);
+	free(ptr->mlx);
+	free(ptr->win);
 	exit(0);
 }
 
