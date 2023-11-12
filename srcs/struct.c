@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:28:04 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/11 16:04:23 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:14:07 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	free_struct(t_game *ptr)
 		free(ptr->map[i]);
 		i++;
 	}
+	mlx_destroy_image(ptr->mlx, ptr->img_0);
+	mlx_destroy_image(ptr->mlx, ptr->img_1);
+	mlx_destroy_image(ptr->mlx, ptr->img_2);
+	mlx_destroy_image(ptr->mlx, ptr->img_3);
+	mlx_destroy_image(ptr->mlx, ptr->img_4);
 	return ;
 }
 

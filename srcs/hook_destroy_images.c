@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:07:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/11 16:06:11 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 08:34:04 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,16 @@ int	try_moove(t_game *ptr)
 
 void	close_windows_esc(t_game *ptr)
 {
-	mlx_destroy_window(ptr->mlx, ptr->win);
-	mlx_destroy_display(ptr->mlx);
 	mlx_destroy_image(ptr->mlx, ptr->img_0);
 	mlx_destroy_image(ptr->mlx, ptr->img_1);
 	mlx_destroy_image(ptr->mlx, ptr->img_2);
 	mlx_destroy_image(ptr->mlx, ptr->img_3);
 	mlx_destroy_image(ptr->mlx, ptr->img_4);
-	free(ptr->map);
+	mlx_destroy_window(ptr->mlx, ptr->win);
+	mlx_destroy_display(ptr->mlx);
+	free_db_tab(ptr->map);
 	free(ptr->mlx);
-	free(ptr->win);
+	// free(ptr->win);
 	exit(0);
 }
 

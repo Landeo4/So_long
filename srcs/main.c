@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/11 15:22:58 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:13:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char *argv[], char *env[])
 	struct_map(map, &ptr);
 	// free_db_tab(map);
 	game_start(&ptr);
-	free_struct(&ptr);
 	printf("salut\n");
 	return (0);
 }
