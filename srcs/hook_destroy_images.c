@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:07:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/12 08:34:04 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:49:20 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	get_key_hook(int keycode, t_game *ptr)
 {
 	ptr->nb_item = nb_item(ptr->map);
+	if (keycode == 65107)
+		return (0);
 	ptr->p_mov = 0;
 	if (keycode == 119)
 		ptr->p_mov = 1;

@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/12 08:50:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:13:35 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	**is_absolute_pass(char **argv)
 	while (argv[len])
 		len++;
 	len--;
-	ft_printf("argv[len] %s\n", argv[len]);
 	fd = open(argv[len], O_RDONLY);
 	if (fd < 0)
 		return (pr_error("problem with your fd\n"), NULL);
@@ -105,7 +104,7 @@ char	*get_map_relative_pass(int fd)
 	tmp = calloc(3000, sizeof(char));
     while (4)
 	{
-        buf = get_next_line(fd);
+        buf = get_next_line(fd, i);
 		if (buf == NULL)
 			break;
 		while (buf[i])
