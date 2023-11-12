@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/12 09:34:23 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 10:12:34 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,20 @@ int verif_size_img(int fd)
 	int		i;
 
 	i = 0;
-	while (i > 3)
+	tmp = NULL;
+	while (i < 3)
 	{
 		tmp = get_next_line(fd);
 		i++;
-		ft_printf("salut");
-		ft_printf("tmp %s\n", tmp);
+		if (i == 3)
+			break ;
 		free(tmp);
 	}
-	// ft_printf("tmp %c %c\n", tmp[1], tmp[2]);
+	ft_printf("tmp %c %c\n", tmp[1], tmp[2]);
 	if (tmp[1] != '3' && tmp[2] != '2')
-		return (-1);
+		return (free(tmp), -1);
 	close(fd);
+	free(tmp);
 	return (0);
 }
 

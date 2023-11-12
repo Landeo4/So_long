@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:43:49 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/11 11:39:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 10:16:04 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_next(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	line = ft_calloc((ft_strlen(buffer) - i), sizeof(char));
 	if (!line)
 		return (NULL);
 	i++;
@@ -56,10 +56,7 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	line = ft_calloc(ft_strlen(buffer) + 1, sizeof(char));
 	if (!line)
-	{
-		free(line);
 		return (NULL);
-	}
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
 	{
@@ -114,7 +111,7 @@ char	*get_next_line(int fd)
 	buffer = ft_next(buffer);
 	if (!line)
 		return (free(buffer), NULL);
-	if (ft_strlen(line) == 1 || ft_strlen(line) == 0)
+	if (ft_strlen(line) == 1)
 		free(buffer);
 	return (line);
 }
