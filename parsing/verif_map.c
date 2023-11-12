@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/10 15:41:08 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 09:34:23 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,73 @@ char	**get_map(char *tmp)
 	return (map);
 }
 
-// int verif_size_img(char **map, t_game *ptr)
-// {
-// 	width = get_next_line();
-// 	if (!width || !height)
-// 		return (-1);
-// 	height = 
-// 	if (width != 16 || height != 16)
-// 		return (-1);
-	
-// 	//verif toutes les tailles = 32 pixels
-// 	return (0);
-// }
+int verif_size_img(int fd)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (i > 3)
+	{
+		tmp = get_next_line(fd);
+		i++;
+		ft_printf("salut");
+		ft_printf("tmp %s\n", tmp);
+		free(tmp);
+	}
+	// ft_printf("tmp %c %c\n", tmp[1], tmp[2]);
+	if (tmp[1] != '3' && tmp[2] != '2')
+		return (-1);
+	close(fd);
+	return (0);
+}
 
 int	verif_map_manager(char **map)
 {
-// 	if (verif_square(map) == -1)
-// 		return (-1);
+	int	fd0;
+	int	fd1;
+	int	fd2;
+	int	fd3;
+	int	fd4;
+
+	fd0 = open ("tiles/exit2.xpm", O_RDONLY);
+	fd1 = open ("tiles/floor2.xpm", O_RDONLY);
+	fd2 = open ("tiles/item2.xpm", O_RDONLY);
+	fd3 = open ("tiles/Player2.xpm", O_RDONLY);
+	fd4 = open ("tiles/Wall2.xpm", O_RDONLY);
+	if (verif_regularity(map) == -1)
+		return (-1);
 	if (verif_map_outline(map) == -1)
+		return (-1);
+	if (verif_size_img(fd0) == -1 || (verif_size_img(fd1) == -1)
+	|| (verif_size_img(fd2) == -1) || (verif_size_img(fd3) == -1)
+	|| (verif_size_img(fd4) == -1))
 		return (-1);
 	return (1);
 }
 
-// int	verif_square(char **map)
-// {
-// 	int	i;
-// 	int	tk;
-// 	int	jt;
+int	verif_regularity(char **map)
+{
+	int	i;
+	int	tk;
+	int	jt;
 
-// 	i = 0;
-// 	tk = 0;
-// 	jt = 0;
-// 	while (map[i] && map[i + 1])
-// 	{
-// 		tk = ft_strlen(map[i]);
-// 		jt = ft_strlen(map[i + 1]);
-// 		if (tk != jt)
-// 		{
-// 			ft_printf("Error\nmap_is_not_a_square\n");
-// 			return (-1);
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = 0;
+	tk = 0;
+	jt = 0;
+	while (map[i] && map[i + 1])
+	{
+		tk = ft_strlen(map[i]);
+		jt = ft_strlen(map[i + 1]);
+		if (tk != jt)
+		{
+			ft_printf("Error\nmap_is_not_a_regular\n");
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	verif_map_outline(char **map)
 {

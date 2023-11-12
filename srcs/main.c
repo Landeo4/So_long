@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/11 16:13:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 09:17:19 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,26 @@ int	main(int argc, char *argv[], char *env[])
 	map = map_manager(argv, env);
 	if (map == NULL)
 		return (free(map), -1);
+	init_struct(&ptr, map);
+	if (verif_all(map, &ptr) == -1)
+		return (free_db_tab(map), 0);
 	ptr.mlx = mlx_init();
 	if (!ptr.mlx)
 		return (-1);
-	init_struct(&ptr, map);
-	if (verif_all(map, &ptr) == -1)
-	{
-		mlx_destroy_display(ptr.mlx);
-		free(ptr.map);
-		free(ptr.mlx);
-		return (free_db_tab(map), 0);
-	}
+	second_init_struct(&ptr, ptr.mlx);
 	struct_map(map, &ptr);
-	// free_db_tab(map);
 	game_start(&ptr);
-	printf("salut\n");
 	return (0);
 }
 
 int	verif_all(char **map, t_game *ptr)
 {
-	if (ptr->nb_exit != 1)
-	{
-		ft_printf("invalid number of exit\n");
-		return (-1);
-	}
+	if (ptr->nb_exit != 1 || ptr->nb_player != 1)
+		return (pr_error("invalid number of exit or player\n"), -1);
 	if (verif_map_manager(map) != 1)
-	{
-		free_db_tab(map);
 		return (-1);
-	}
 	if (game_manager(map, ptr) == -1)
-	{
-		free_db_tab(map);
 		return (-1);
-	}
 	// if (verif_size_img(map, ptr) == -1)
 	// {
 	// 	free_db_tab(map);

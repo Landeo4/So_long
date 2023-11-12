@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:28:04 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/11 16:14:07 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 08:55:13 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	free_struct(t_game *ptr)
 
 void	init_struct(t_game *ptr, char **map)
 {
-	second_init_struct(ptr, ptr->mlx);
 	ptr->x = 0;
 	ptr->y = 0;
 	ptr->nb_item = nb_item(map);
 	ptr->nb_exit = nb_exit(map);
+	ptr->nb_player = nb_player(map);
 	ptr->p_x = 0;
 	ptr->p_y = 0;
 	ptr->p_mov = 0;

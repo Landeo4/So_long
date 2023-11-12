@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:18:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/10 11:47:54 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 08:57:59 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,67 +162,25 @@ char	**cpy_map(char **map)
 	return (tmp);
 }
 
-/*
-char **cpy_map(char **map)
+int	nb_player(char **map)
 {
-	int		i;
-	int		x;
-	int		j;
-	int		len;
-	char	**tmp;
+	int	i;
+	int	j;
+	int	play;
 
-	i = 1;
-	x = 0;
-	len = 0;
-	while (map[i + 1])
-	{
-		i++;
-		len++;
-	}
-	i = 1;
-	tmp = malloc(sizeof (char *) * len);
-	if (!tmp)
-		return (NULL);
-	ft_printf("len %d\n", len);
-	while (map[i] && map[i + 1])
-	{
-		tmp[x] = malloc(sizeof(char) * (ft_strlen(map[i]) - 1));
-		if (!tmp[x])
-			return (NULL);
-		j = 1;
-		while (map[i][j] && map[i][j + 1])
-		{
-			tmp[x][j] = map[i][j];
-			j++;
-		}
-		ft_printf("x %d\n", x);
-		tmp[x][j] = '\0';
-		i++;
-		x++;
-	}
-	tmp[x] = NULL;
-	return (tmp);
-}
-*/
-
-/*char **map_creator(char **map)
-{
-	char	**lit_map;
-	int		i;
-	int		j;
-
-	j = 0;
 	i = 0;
-	lit_map = malloc(sizeof(char *) * ft_strlen(map[i]));
+	j = 0;
+	play = 0;
 	while (map[i])
 	{
 		while (map[i][j])
 		{
-			lit_map[i][j] = map[i][j];
 			j++;
+			if (map[i][j] == 'P')
+				play++;
 		}
-		j = 0;
 		i++;
+		j = 0;
 	}
-	return (lit_map);
-}*/
+	return (play);
+}

@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/11 13:22:25 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 08:50:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ char	**is_absolute_pass(char **argv)
 	while (argv[len])
 		len++;
 	len--;
-	fd = open("/mnt/nfs/homes/tpotilli/Desktop/projet a mettre sur git/so_long_banger/so_long_banger/maps/map.ber", O_RDONLY);
+	ft_printf("argv[len] %s\n", argv[len]);
+	fd = open(argv[len], O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("erreur lors de l'ouverture du fichier\n");
-		return (NULL);
-	}
+		return (pr_error("problem with your fd\n"), NULL);
 	buf = get_map_relative_pass(fd);
-	ft_printf("buf%s\n", buf);
+	if (ft_strlen(buf) >= 2000)
+		return (pr_error("map is too wide\n"), NULL);
 	split = ft_split(buf, '\n');
 	free(buf);
 	close(fd);
@@ -103,7 +102,7 @@ char	*get_map_relative_pass(int fd)
 
 	i = 0;
 	j = 0;
-	tmp = calloc(300, sizeof(char));
+	tmp = calloc(3000, sizeof(char));
     while (4)
 	{
         buf = get_next_line(fd);

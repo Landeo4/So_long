@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/11 13:14:33 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/12 09:20:58 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_game
 	int		y;
 	int		nb_item;
 	int		nb_exit;
+	int		nb_player;
 	int		p_x;
 	int		p_y;
 	int		p_mov;
@@ -117,7 +118,9 @@ int					verif_square(char **map);
 int					verif_playable(char **map);
 int					verif_map_characters(t_game *ptr);
 int					verif_all(char **map, t_game *ptr);
-
+int					nb_player(char **map);
+int					verif_regularity(char **map);
+int					verif_size_img(int fd);
 /*
 =====================================
 			GET_NEXT_LINE
