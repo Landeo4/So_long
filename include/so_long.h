@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/13 15:16:32 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:46:57 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int					get_lenght(char *tmp, char *argv[]);
 char				*get_final_path_map(char *argv[], char *tmp);
 char				*get_perfect_pass(char *tmp);
 char				**get_map(char *tmp);
-int					verif_pass_ber(char **argv, int i, int j);
+int					verif_pass_ber(char **argv);
 int					verif_relatif_pass(char **argv);
 char				**is_absolute_pass(char **argv);
 char				*get_map_relative_pass(int fd);
@@ -134,6 +134,8 @@ int					verif_size_img(int fd);
 void				free_at_create_map(t_game *ptr);
 int					is_empty(char **argv);
 int					check_map_size(char **map);
+int					check_map_characters(char **split);
+int					verif_else(char **split, int i, int j, int cpt);
 
 /*
 =====================================

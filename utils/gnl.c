@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:43:49 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 08:18:46 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:40:18 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char	*get_next_line(int fd, int j)
 		buffer = ft_next(buffer);
 		if (!line)
 			return (free(buffer), NULL);
-		if (ft_strlen(line) == 1)
+		if (ft_strlen(line) == 1 && !buffer)
 		{
 			free(line);
 			free(buffer);

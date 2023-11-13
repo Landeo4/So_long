@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/13 09:36:24 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:49:26 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ char	**is_absolute_pass(char **argv)
 	fd = open(argv[len], O_RDONLY);
 	if (fd < 0)
 		return (pr_error("problem with your fd\n"), NULL);
+	if (verif_pass_ber(argv) == -1)
+		return (pr_error("not a .ber\n"), close(fd), NULL);
 	buf = get_map_relative_pass(fd);
 	if (check_map_single(buf) == -1)
-		return (pr_error("map is wrong\n"),free(buf), NULL);
+		return (pr_error("map is wrong\n"), close(fd), free(buf), NULL);
 	if (ft_strlen(buf) >= 2000)
-		return (pr_error("map is too wide\n"), NULL);
+		return (pr_error("map is too wide\n"), close(fd), NULL);
 	split = ft_split(buf, '\n');
 	free(buf);
 	close(fd);
+	// if (check_map_characters(split) == -1)
+	// 	return (free_db_tab(split), pr_error("map have empty line\n"), NULL);
 	return (split);
 }
 
@@ -72,17 +76,25 @@ int	verif_relatif_pass(char **argv)
 	}
 	if (token == 0)
 		return (-1);
-	else if (verif_pass_ber(argv, i, j) == -1)
+	else if (verif_pass_ber(argv) == -1)
 		return (-1);
 	return (1);
 }
 
-int	verif_pass_ber(char **argv, int i, int j)
+int	verif_pass_ber(char **argv)
 {
 	char	*name;
+	int		i;
+	int		j;
 	int		c;
 
+	i = ((j = 0));
 	c = 0;
+	while (argv[i])
+		i++;
+	i--;
+	while (argv[i][j])
+		j++;
 	j = j - 4;
 	name = ".ber";
 	while (argv[i][j])
