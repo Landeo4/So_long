@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:28:04 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 09:52:06 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:52:52 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_struct(t_game *ptr, char **map)
 	ptr->p_mov = 0;
 	ptr->map = NULL;
 	ptr->mov = 0;
+	ptr->exit = 1;
 	set_pos_exit(ptr, map);
 }
 
@@ -58,8 +59,9 @@ void	set_pos_exit(t_game *ptr, char **map)
 		{
 			if (map[i][j] == 'E')
 			{
-				ptr->p_x_exit = ptr->x;
-				ptr->p_y_exit = ptr->y;
+				ptr->exit_x = j;
+				ptr->exit_y = i;
+				ft_printf("y = %d x = %d\n", ptr->exit_y, ptr->exit_x);
 				return ;
 			}
 			j++;

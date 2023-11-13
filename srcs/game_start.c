@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 08:07:29 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:09:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	put_image(t_game *ptr, int *i, int *j)
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_2,
 			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'E')
-		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_3,
+		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_1,
 			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'C')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_4,

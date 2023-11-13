@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/13 10:20:18 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:31:38 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ typedef struct s_game
 	int		nb_player;
 	int		p_x;
 	int		p_y;
-	int		p_x_exit;
-	int		p_y_exit;
+	int		exit_x;
+	int		exit_y;
+	int		exit;
 	int		p_mov;
 	int		mov;
 	void	*mlx;
