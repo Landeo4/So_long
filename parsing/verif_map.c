@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:40:15 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/12 16:35:09 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 07:40:08 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**get_map(char *tmp)
 	return (map);
 }
 
-int verif_size_img(int fd)
+int	verif_size_img(int fd)
 {
 	char	*tmp;
 	int		i;
@@ -89,7 +89,6 @@ int	verif_map_manager(char **map)
 	fd4 = open ("tiles/Wall2.xpm", O_RDONLY);
 	if (fd4 < 0)
 		return (-1);
-	// ft_printf("fd0 %d\n fd1 %d\n fd2 %d\n df3 %d\n fd4 %d\n", fd0, fd1, fd2, fd3, fd4);
 	if (verif_regularity(map) == -1)
 		return (-1);
 	if (verif_map_outline(map) == -1)
@@ -133,7 +132,7 @@ int	verif_map_outline(char **map)
 int	verif_map_middle(char **map)
 {
 	int	j;
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])

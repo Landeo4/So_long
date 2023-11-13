@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/12 18:35:24 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 07:37:59 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,16 @@ int	put_image(t_game *ptr, int *i, int *j)
 	return (0);
 }
 
-int	mouse_hook(int keycode, t_game *ptr)
+int	mouse_hook(t_game *ptr)
 {
-	(void)keycode;
-	// (void)ptr;
-	// mlx_destroy_image(ptr->mlx, ptr->img_0);
-	// mlx_destroy_image(ptr->mlx, ptr->img_1);
-	// mlx_destroy_image(ptr->mlx, ptr->img_2);
-	// mlx_destroy_image(ptr->mlx, ptr->img_3);
-	// mlx_destroy_image(ptr->mlx, ptr->img_4);
+	mlx_destroy_image(ptr->mlx, ptr->img_0);
+	mlx_destroy_image(ptr->mlx, ptr->img_1);
+	mlx_destroy_image(ptr->mlx, ptr->img_2);
+	mlx_destroy_image(ptr->mlx, ptr->img_3);
+	mlx_destroy_image(ptr->mlx, ptr->img_4);
 	mlx_destroy_window(ptr->mlx, ptr->win);
 	mlx_destroy_display(ptr->mlx);
 	free_db_tab(ptr->map);
 	free(ptr->mlx);
-	return (0);
+	exit (0);
 }
-
-/*void player_movement(char **map, t_game *ptr)
-{
-	int		y;
-	int		x;
-
-	mlx_key_hook(ptr->win, key_hook, &ptr);
-	if ()
-}*/

@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/12 18:29:36 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 07:37:11 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int					game_start(t_game *ptr);
 int					create_map(t_game *ptr);
 int					put_image(t_game *ptr, int *i, int *j);
 void				close_windows_esc(t_game *ptr);
-int					close_windows_mouse(int keycode, t_game *ptr);
 int					try_moove(t_game *ptr);
 void				free_struct(t_game *ptr);
 void				struct_map(char **map, t_game *ptr);
@@ -83,8 +82,7 @@ int					get_key_hook(int keycode, t_game *ptr);
 char				**cpy_map(char **map);
 void				player_movement(t_game *ptr, int input);
 void				second_init_struct(t_game *ptr, void *mlx);
-int					mouse_hook(int keycode, t_game *ptr);
-int					tes(int keycode, t_game *ptr);
+int					mouse_hook(t_game *ptr);
 
 /*
 =====================================
