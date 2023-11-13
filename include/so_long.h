@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/13 07:37:11 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 09:48:04 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_game
 	int		nb_player;
 	int		p_x;
 	int		p_y;
+	int		p_x_exit;
+	int		p_y_exit;
 	int		p_mov;
 	int		mov;
 	void	*mlx;
@@ -83,6 +85,10 @@ char				**cpy_map(char **map);
 void				player_movement(t_game *ptr, int input);
 void				second_init_struct(t_game *ptr, void *mlx);
 int					mouse_hook(t_game *ptr);
+char				**cpy_map_help(char **map, char **tmp, int i, int j);
+void				player_movement_support(t_game *ptr, int y, int x);
+char				**cpy_map_help(char **map, char **tmp, int i, int j);
+void				set_pos_exit(t_game *ptr, char **map);
 
 /*
 =====================================
@@ -93,7 +99,7 @@ int					mouse_hook(t_game *ptr);
 bool				parsing(char *argv[]);
 int					verif_map_outline(char **map);
 int					verif_map(char **argv);
-char				**map_manager(char *argv[], char *evp[]);
+char				**map_manager(char *argv[]);
 char				*ft_get_path(char **env);
 int					get_lenght(char *tmp, char *argv[]);
 char				*get_final_path_map(char *argv[], char *tmp);
@@ -105,13 +111,14 @@ char				**is_absolute_pass(char **argv);
 char				*get_map_relative_pass(int fd);
 int					nb_exit(char **map);
 int					is_complete_map(char **buf);
+int					check_map_single(char *buf);
 
 /*
 =====================================
 			MAP VERIF
 =====================================
 */
-int					verif_map_manager(char **map);
+int					verif_map_manager(char **map, int fd0, int fd1, int fd2);
 int					map_out_help(char **map);
 int					verif_map_middle(char **map);
 int					verif_square(char **map);
@@ -121,15 +128,14 @@ int					verif_all(char **map, t_game *ptr);
 int					nb_player(char **map);
 int					verif_regularity(char **map);
 int					verif_size_img(int fd);
+void				free_at_create_map(t_game *ptr);
+int					is_empty(char **argv);
+
 /*
 =====================================
 			GET_NEXT_LINE
 =====================================
 */
-
-#	ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 1
-# endif
 
 char				*get_next_line(int fd, int j);
 char				*ft_first_backup(char *backup, int fd);

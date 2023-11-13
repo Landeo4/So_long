@@ -6,113 +6,42 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:10:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/10 15:45:46 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 09:32:30 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**map_manager(char *argv[], char *env[])
+char	**map_manager(char *argv[])
 {
 	char	**map;
-	(void)env;
+
+	if (is_empty(argv) == -1)
+		return (pr_error("no argument\n"), NULL);
 	map = is_absolute_pass(argv);
+	if (!map)
+		return (NULL);
 	return (map);
-	// tmp = ft_get_path(env);
-	// if (!tmp)
-	// 	return (NULL);
-	// tmp = get_final_path_map(argv, tmp);
-	// if (!tmp)
-	// 	return (NULL);
-	// tmp = get_perfect_pass(tmp);
-	// if (!tmp)
-	// 	return (NULL);
-	// map = get_map(tmp);
-	// free(tmp);
 }
 
-char	*get_perfect_pass(char *tmp)
+int	is_empty(char **argv)
 {
-	char	*buff;
+	char	*str;
 	int		i;
 	int		j;
 
-	i = 4;
-	j = 0;
-	buff = malloc(sizeof(char) * ft_strlen(tmp) - 3);
-	if (!buff)
-		return (NULL);
-	while (tmp[i])
-	{
-		buff[j] = tmp[i];
+	str = "./so_long";
+	i = ((j = 0));
+	while (argv[i])
 		i++;
+	i--;
+	while (argv[i][j])
+	{
+		if (argv[i][j] != str[j])
+			return (0);
 		j++;
 	}
-	buff[j] = '\0';
-	free(tmp);
-	return (buff);
-}
-
-char	*get_final_path_map(char *argv[], char *tmp)
-{
-	int		i;
-	int		j;
-	char	*path;
-
-	i = 0;
-	j = 0;
-	path = malloc(sizeof(char) * ft_strlen(tmp) + ft_strlen(argv[1]) + 2);
-	if (!path)
-		return (NULL);
-	while (tmp[i])
-	{
-		path[j] = tmp[i];
-		i++;
-		j++;
-	}
-	i = 0;
-	path[j] = '/';
-	j++;
-	while (argv[1][i])
-	{
-		path[j] = argv[1][i];
-		j++;
-		i++;
-	}
-	free(tmp);
-	path[j] = '\0';
-	return (path);
-}
-
-char	*ft_get_path(char **env)
-{
-	int		i;
-	char	*path;
-	char	*dos;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (ft_strncmp(env[i], "PWD", 3) != 0)
-		i++;
-	dos = "/maps";
-	path = malloc(sizeof(char) * ft_strlen(env[i]) + 6);
-	if (!path)
-		return (NULL);
-	while (env[i][j])
-	{
-		path[j] = env[i][j];
-		j++;
-	}
-	i = 0;
-	while (dos[i])
-	{
-		path[j] = dos[i];
-		i++;
-		j++;
-	}
-	path[j] = '\0';
-	return (path);
+	return (-1);
 }
 
 char	*str_join_free(char *path, char *cmd)
@@ -122,4 +51,57 @@ char	*str_join_free(char *path, char *cmd)
 	str = ft_strjoin(path, cmd);
 	free(path);
 	return (str);
+}
+
+int	map_out_help(char **map)
+{
+	int	i;
+	int	last;
+	int	j;
+
+	j = 0;
+	i = 0;
+	last = 0;
+	while (map[last])
+		last++;
+	last--;
+	while (map[i][j])
+	{
+		if (map[i][j] != '1')
+			return (-1);
+		j++;
+	}
+	i = 0;
+	while (map[last][i])
+	{
+		if (map[last][i] != '1')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	verif_size_img(int fd)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = ((j = 0));
+	tmp = NULL;
+	while (i < 3)
+	{
+		tmp = get_next_line(fd, j);
+		i++;
+		if (i == 3)
+			break ;
+		free(tmp);
+	}
+	if (tmp[1] != '3' && tmp[2] != '2'
+		&& tmp[5] != '3' && tmp[6] != '2')
+		return (free(tmp), get_next_line(fd, 1), -1);
+	free(tmp);
+	close(fd);
+	get_next_line(fd, 1);
+	return (0);
 }

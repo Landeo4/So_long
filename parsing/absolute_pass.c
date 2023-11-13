@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:59:39 by tpotillion        #+#    #+#             */
-/*   Updated: 2023/11/12 15:13:35 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 09:36:24 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	**is_absolute_pass(char **argv)
 	if (fd < 0)
 		return (pr_error("problem with your fd\n"), NULL);
 	buf = get_map_relative_pass(fd);
+	if (check_map_single(buf) == -1)
+		return (pr_error("map is wrong\n"),free(buf), NULL);
 	if (ft_strlen(buf) >= 2000)
 		return (pr_error("map is too wide\n"), NULL);
 	split = ft_split(buf, '\n');
@@ -36,19 +38,20 @@ char	**is_absolute_pass(char **argv)
 	return (split);
 }
 
-// int	is_complete_map(char *map)
-// {
-// 	int i;
+int	check_map_single(char *buf)
+{
+	int	i;
 
-// 	while (map[i])
-// 	{
-// 		if (map[i] != '0' && map[i] != 'P' && map[i] != 'C'
-// 				&& map[i] != 'E' && map[i] != '1')
-// 				return (-1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	i = 0;
+	while (buf[i])
+	{
+		if (buf[i] != '0' && buf[i] != 'P' && buf[i] != 'C'
+			&& buf[i] != 'E' && buf[i] != '1' && buf[i] != '\n')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
 
 int	verif_relatif_pass(char **argv)
 {
@@ -99,14 +102,13 @@ char	*get_map_relative_pass(int fd)
 	int		i;
 	int		j;
 
-	i = 0;
-	j = 0;
+	i = ((j = 0));
 	tmp = calloc(3000, sizeof(char));
-    while (4)
+	while (4)
 	{
-        buf = get_next_line(fd, i);
+		buf = get_next_line(fd, i);
 		if (buf == NULL)
-			break;
+			break ;
 		while (buf[i])
 		{
 			tmp[j] = buf[i];
@@ -115,9 +117,9 @@ char	*get_map_relative_pass(int fd)
 		}
 		i = 0;
 		free(buf);
-    }
+	}
 	tmp[j] = '\0';
-    close(fd);
+	close(fd);
 	free(buf);
-    return (tmp);
+	return (tmp);
 }

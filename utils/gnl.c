@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:43:49 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/12 15:07:20 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:18:46 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,50 +105,26 @@ char	*get_next_line(int fd, int j)
 {
 	static char	*buffer;
 	char		*line;
-(void)j;
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (fd != 1)
 	{
-	buffer = read_file(fd, buffer);
-	if (!buffer)
-		return (NULL);
-	line = ft_line(buffer);
-	buffer = ft_next(buffer);
-	if (!line)
-		return (free(buffer), NULL);
-	if (ft_strlen(line) == 1)
-	{
-		free(line);
-		free(buffer);
-		return (NULL);
-	}
+		buffer = read_file(fd, buffer);
+		if (!buffer)
+			return (NULL);
+		line = ft_line(buffer);
+		buffer = ft_next(buffer);
+		if (!line)
+			return (free(buffer), NULL);
+		if (ft_strlen(line) == 1)
+		{
+			free(line);
+			free(buffer);
+			return (NULL);
+		}
 	}
 	if (j == 1)
 		return (free(line), NULL);
 	return (line);
 }
-
-// char	*get_next_line(int fd, int i)
-// {
-// 	static char	buffer[128];
-// 	char		*tmp;
-// 	char		*line;
-
-// 	if (fd < 0 || BUFFER_SIZE <= 0)
-// 		return (NULL);
-// 	tmp = read_file(fd, buffer);
-// 	if (!buffer)
-// 		return (NULL);
-// 	line = ft_line(buffer);
-// 	tmp = ft_next(buffer);
-// 	if (!line)
-// 		return (free(buffer), NULL);
-// 	if (ft_strlen(line) == 1)
-// 	{
-// 		free(line);
-// 		free(buffer);
-// 		return (NULL);
-// 	}
-// 	return (line);
-// }

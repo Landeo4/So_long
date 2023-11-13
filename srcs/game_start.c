@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 07:37:59 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 08:07:29 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	game_start(t_game *ptr)
 {
-	// mlx_mouse_hook(ptr->win, close_windows_mouse, &ptr);
 	mlx_hook(ptr->win, 17, 0, mouse_hook, ptr);
 	mlx_key_hook(ptr->win, get_key_hook, ptr);
-	// mlx_mouse_hook(ptr->win, tes, ptr);
 	mlx_loop(ptr->mlx);
 	return (0);
 }
@@ -33,7 +31,7 @@ int	create_map(t_game *ptr)
 	height = ft_len_db_tab(ptr->map);
 	width = ft_strlen(ptr->map[i]);
 	ptr->win = mlx_new_window(ptr->mlx, ((width) * 32),
-		((height) * 32), "Hello world!");
+			((height) * 32), "Hello world!");
 	if (ptr->win == NULL)
 		return (-1);
 	while (ptr->map[i])

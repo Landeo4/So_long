@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:07:13 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 07:37:01 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 07:57:23 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,30 +76,17 @@ void	close_windows_esc(t_game *ptr)
 	mlx_destroy_display(ptr->mlx);
 	free_db_tab(ptr->map);
 	free(ptr->mlx);
-	// free(ptr->win);
 	exit(0);
 }
 
-// int	close_windows_mouse(int keycode, t_game *vars, char **map)
-// {
-// 	int i;
-// 	int j;
-
-// 	if (keycode == 1)
-// 	{
-// 		i = 0;
-// 		while (map[i])
-// 		{
-// 			j = 0;
-// 			while (map[i][j])
-// 			{
-// 				mlx_destroy_window(vars->mlx, vars->win);
-// 				j++;
-// 			}
-// 			i++;
-// 		}
-// 		exit(0);
-// 	}
-// 	printf("Hello from mouse_hook!\n");
-// 	return (0);
-// }
+void	free_at_create_map(t_game *ptr)
+{
+	mlx_destroy_image(ptr->mlx, ptr->img_0);
+	mlx_destroy_image(ptr->mlx, ptr->img_1);
+	mlx_destroy_image(ptr->mlx, ptr->img_2);
+	mlx_destroy_image(ptr->mlx, ptr->img_4);
+	mlx_destroy_window(ptr->mlx, ptr->win);
+	mlx_destroy_display(ptr->mlx);
+	free_db_tab(ptr->map);
+	free(ptr->mlx);
+}
