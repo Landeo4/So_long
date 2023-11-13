@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/13 09:48:04 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:20:18 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int					verif_regularity(char **map);
 int					verif_size_img(int fd);
 void				free_at_create_map(t_game *ptr);
 int					is_empty(char **argv);
+int					check_map_size(char **map);
 
 /*
 =====================================

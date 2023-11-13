@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:01:28 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 09:51:48 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:19:03 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	player_movement_support(t_game *ptr, int y, int x)
 		close_windows_esc(ptr);
 		return ;
 	}
+	else if (ptr->map[y][x] == 'E')
+		return ;
 	else if (ptr->map[y][x] == 'C')
 		ptr->nb_item--;
 	ptr->map[ptr->p_y][ptr->p_x] = '0';
@@ -46,8 +48,6 @@ void	player_movement_support(t_game *ptr, int y, int x)
 	ptr->map[ptr->p_y][ptr->p_x] = 'P';
 	put_image(ptr, &ptr->p_y, &ptr->p_x);
 	ptr->mov++;
-	if (ptr->p_x_exit != ptr->p_x &&ptr->p_y_exit != ptr->p_y)
-		put_image(ptr, &y, &x);
 	ft_printf("%d\n", ptr->mov);
 }
 

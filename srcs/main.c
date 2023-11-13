@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:43:31 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/13 09:08:14 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:26:20 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,34 @@ int	verif_all(char **map, t_game *ptr)
 		return (-1);
 	if (verif_map_manager(map, fd0, fd1, fd2) != 1)
 		return (-1);
+	if (check_map_size(map) == -1)
+		return (pr_error("map is too small\n"), -1);
 	if (game_manager(map, ptr) == -1)
 		return (pr_error("map not playable\n"), -1);
+	return (0);
+}
+
+int	check_map_size(char **map)
+{
+	int	i;
+	int	j;
+	int	cpt;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		cpt = 0;
+		while (map[i][j])
+		{
+			j++;
+			cpt++;
+		}
+		ft_printf("cpt %d\n", cpt);
+		if (cpt <= 5)
+			return (-1);
+		i++;
+	}
 	return (0);
 }
 
