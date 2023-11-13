@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:03:33 by tpotilli@st       #+#    #+#             */
-/*   Updated: 2023/11/13 10:31:38 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:16:32 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_game
 	char	*img_2;
 	char	*img_3;
 	char	*img_4;
+	char	*img_5;
 }		t_game;
 
 int					ft_strlen(char *s);
@@ -90,6 +91,7 @@ char				**cpy_map_help(char **map, char **tmp, int i, int j);
 void				player_movement_support(t_game *ptr, int y, int x);
 char				**cpy_map_help(char **map, char **tmp, int i, int j);
 void				set_pos_exit(t_game *ptr, char **map);
+void				exit_case(t_game *ptr, int y, int x);
 
 /*
 =====================================

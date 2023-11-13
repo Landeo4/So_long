@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:00:32 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 09:55:27 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:07:09 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ int	backtracking_map_finish(char **tmp)
 int	backtracking_map(char **tmp, int y, int x)
 {
 	if (tmp[y][x] == '1'
-		|| tmp[y][x] == '2'
-		|| tmp[y][x] == 'S')
+		|| tmp[y][x] == '2')
 		return (-1);
 	return (0);
 }

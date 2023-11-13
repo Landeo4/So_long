@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:29:03 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 11:09:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:19:42 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,16 @@ int	put_image(t_game *ptr, int *i, int *j)
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_2,
 			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'E')
-		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_1,
+		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_3,
 			(*j) * 32, (*i) * 32);
 	else if (ptr->map[*i] && ptr->map[*i][*j] == 'C')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_4,
 			(*j) * 32, (*i) * 32);
+	else if (ptr->map[*i] && ptr->map[*i][*j] == 'X')
+	{
+			mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->img_5,
+			(*j) * 32, (*i) * 32);
+	}
 	return (0);
 }
 
@@ -78,6 +83,7 @@ int	mouse_hook(t_game *ptr)
 	mlx_destroy_image(ptr->mlx, ptr->img_2);
 	mlx_destroy_image(ptr->mlx, ptr->img_3);
 	mlx_destroy_image(ptr->mlx, ptr->img_4);
+	mlx_destroy_image(ptr->mlx, ptr->img_5);
 	mlx_destroy_window(ptr->mlx, ptr->win);
 	mlx_destroy_display(ptr->mlx);
 	free_db_tab(ptr->map);

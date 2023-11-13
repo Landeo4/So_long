@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:28:04 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/11/13 11:52:52 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:28:48 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	free_struct(t_game *ptr)
 	mlx_destroy_image(ptr->mlx, ptr->img_2);
 	mlx_destroy_image(ptr->mlx, ptr->img_3);
 	mlx_destroy_image(ptr->mlx, ptr->img_4);
+	mlx_destroy_image(ptr->mlx, ptr->img_5);
 	return ;
 }
 
@@ -42,7 +43,7 @@ void	init_struct(t_game *ptr, char **map)
 	ptr->p_mov = 0;
 	ptr->map = NULL;
 	ptr->mov = 0;
-	ptr->exit = 1;
+	ptr->exit = 0;
 	set_pos_exit(ptr, map);
 }
 
@@ -61,7 +62,6 @@ void	set_pos_exit(t_game *ptr, char **map)
 			{
 				ptr->exit_x = j;
 				ptr->exit_y = i;
-				ft_printf("y = %d x = %d\n", ptr->exit_y, ptr->exit_x);
 				return ;
 			}
 			j++;
@@ -87,6 +87,8 @@ void	second_init_struct(t_game *ptr, void *mlx)
 			"tiles/exit2.xpm", &img_width, &img_height);
 	ptr->img_4 = mlx_xpm_file_to_image(mlx,
 			"tiles/item2.xpm", &img_width, &img_height);
+	ptr->img_5 = mlx_xpm_file_to_image(mlx,
+			"tiles/Player_door.xpm", &img_width, &img_height);
 }
 
 void	struct_map(char **map, t_game *ptr)
